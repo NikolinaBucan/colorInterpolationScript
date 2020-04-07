@@ -21,7 +21,7 @@ root.resizable(0,0)
 
 alist = []
 
-rColor1=0
+#rColor1=0
 def chooseColor():
 
 	color = askcolor()
@@ -29,8 +29,8 @@ def chooseColor():
 	canvas= tkinter.Canvas(width=30, height=30)
 	canvas.grid(row=3, column=2)
 	canvas.configure(background=color[1])
-	global statusCheck
-	statusCheck1= True
+	#global statusCheck
+	#statusCheck1= True
 	alist.append(1)
 	global color1Str
 	color1Str=str(color[1])
@@ -95,9 +95,9 @@ def chooseColor2():
 	canvas2= tkinter.Canvas(width=30, height=30)
 	canvas2.grid(row=7, column=2)
 	canvas2.configure(background=color2[1])
-	global statusCheck
-	statusCheck2= True
-	print(str(statusCheck2))
+	#global statusCheck
+	#statusCheck2= True
+	#print(str(statusCheck2))
 	alist.append(2)
 	print(color2)
 	global color2Str
@@ -183,8 +183,8 @@ def interpolate():
 
 	
 	
-
-	if ( 1 in alist ) and ( 2 in alist ) and not len(e.get()) ==0:
+	
+	if ( 1 in alist ) and ( 2 in alist ) and not len(e.get()) ==0 and (color1Str!=color2Str):
 		labelMessage=Label(text="", width=50).grid(row=13, column=2)
 		broj = e.get()
 		global broj2
@@ -225,7 +225,7 @@ def interpolate():
 							print (m)
 							print("/", end="")
 							canvas= tkinter.Canvas(top, width=20, height=20)
-							canvas.grid(row=1+m, column=j)
+							canvas.grid(row=0+m, column=j)
 							canvas.configure(background="red")
 							if rc1>rc2:
 								canRColor=rc1-rStep*(20*m+j)
@@ -340,7 +340,7 @@ def interpolate():
 					for k in range(broj2 % 20):
 						print("/", end="")
 						canvas= tkinter.Canvas(top, width=20, height=20)
-						canvas.grid(row=2+m, column=k)
+						canvas.grid(row=1+m, column=k)
 										
 						canvas.configure(background="blue")
 
@@ -456,7 +456,7 @@ def interpolate():
 					for l in range(broj2):
 						print("/", end="")
 						canvas= tkinter.Canvas(top, width=20, height=20)
-						canvas.grid(row=1, column=l)
+						canvas.grid(row=0, column=l)
 											
 						canvas.configure(background="green")
 
@@ -570,7 +570,8 @@ def interpolate():
 		except (TypeError, ValueError, ZeroDivisionError):
 			labelMessage=Label(text="You must enter an entire positive number between 1 and 500", width=50).grid(row=13, column=2)
 
-
+	elif ( 1 in alist ) and ( 2 in alist ) and not len(e.get()) ==0 and (color1Str==color2Str):
+		labelMessage=Label(text="First color and second color are the same", width=50).grid(row=13, column=2)
 	elif not ( 1 in alist ) and not ( 2 in alist ) and  len(e.get()) ==0:
 				labelMessage=Label(text="You must enter all the information", width=50).grid(row=13, column=2)							
 	elif ( 1 in alist ) and not ( 2 in alist ) and len(e.get()) ==0:
